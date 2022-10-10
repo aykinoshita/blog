@@ -6,19 +6,19 @@
   
   <title>アンマネージド ディスクを使用している仮想マシンのマネージド ディスクへの移行について | Japan Azure IaaS Core Support Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="こんにちは、Azure サポートチームの木下です。今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。">
+  <meta name="description" content="こんにちは、Azure テクニカル サポート チームの木下です。今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="アンマネージド ディスクを使用している仮想マシンのマネージド ディスクへの移行について">
 <meta property="og:url" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/index.html">
 <meta property="og:site_name" content="Japan Azure IaaS Core Support Blog">
-<meta property="og:description" content="こんにちは、Azure サポートチームの木下です。今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。">
+<meta property="og:description" content="こんにちは、Azure テクニカル サポート チームの木下です。今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/01.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/02.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/03.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/04.png">
 <meta property="article:published_time" content="2022-10-11T03:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-10T01:05:10.826Z">
+<meta property="article:modified_time" content="2022-10-10T06:58:59.687Z">
 <meta property="article:author" content="Japan Azure IaaS Core Support Team">
 <meta property="article:tag" content="Managed Disk">
 <meta property="article:tag" content="VM">
@@ -108,22 +108,23 @@
         
         <a href="https://github.com/jpaztech/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0cd47800-67be-5d6f-a069-0cf41acb59f2%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%B3%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpaztech.github.io%2Fblog%2Fvm%2Funmanaged-disk-retired%2F%29%0A*+Content+Source%3A+%5Barticles%2Fvm%2Funmanaged-disk-retired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpaztech%2Fblog%2Fblob%2Fmaster%2Farticles%2Fvm%2Funmanaged-disk-retired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/" data-id="cl922oejd004n0mnk92h6h87c" class="article-share-link">共有</a>
+        <a data-url="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/" data-id="cl92fbdeo004p0mpd7kaacyym" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>こんにちは、Azure サポートチームの木下です。<br>今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。</p>
+        <p>こんにちは、Azure テクニカル サポート チームの木下です。<br>今回は、度々お問い合わせいただきます、アンマネージド ディスク (非管理ディスク) を使用している仮想マシンのマネージド ディスク (管理ディスク) への移行についてご紹介いたします。</p>
 <span id="more"></span>
+
 <hr>
 <p>2017 年にマネージド ディスク (管理ディスク) がリリースされて以降、マネージド ディスクの機能強化が行われてきました。今後もマネージド ディスクの機能向上に備えるため、2022 年 9 月 30 日以降、アンマネージド ディスクは非推奨となり、2025 年 9 月 30 日をもちまして廃止が予定されております。</p>
-<div class="alert is-important"><p class="alert-title">重要</p><p>Azure の更新情報や TrackingID: JTP9-JD0 にて周知されている情報となります。</p><p> 参考）Azure unmanaged disks will be retired on 30 September 2025</p><p><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/updates/azure-unmanaged-disks-will-be-retired-on-30-september-2025/">https://azure.microsoft.com/ja-jp/updates/azure-unmanaged-disks-will-be-retired-on-30-september-2025/</a></p></div>
-<p>上記の通り、2025 年 9 月 30 日以降、アンマネージド ディスクを使用している仮想マシンは利用できなくなりますので、この期日までにアンマネージド ディスクを使用している仮想マシンをマネージド ディスクへ移行する必要がございます。</p>
-<div class="alert is-info"><p class="alert-title">Note</p><p>Azure 更新情報 URL 内に記載の “Page blobs will not be affected by this change.” の箇所につきまして補足させていただきます。</p><p>アンマネージド ディスクの仮想マシンでは、VHD ファイルを Azure Storage 内に ページ BLOB として格納し、アンマネージド ディスクとして仮想マシンで利用しております。</p><p>今回アンマネージド ディスクは 2025 年 9 月 30 日をもって廃止となり、アンマネージド ディスクを使用している仮想マシンは利用できなくなりますが、Azure Storage 内に格納されているページ BLOB 自体には影響はございませんのでこの点はご安心くださいませ。</p></div>
+<div class="alert is-important"><p class="alert-title">重要</p><p>Azure の更新情報や Tracking ID: JTP9-JD0 にて周知されている情報となります。</p><p>参考）Azure unmanaged disks will be retired on 30 September 2025</p><p><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/updates/azure-unmanaged-disks-will-be-retired-on-30-september-2025/">https://azure.microsoft.com/ja-jp/updates/azure-unmanaged-disks-will-be-retired-on-30-september-2025/</a></p></div>
+<p>上記の通り、2025 年 9 月 30 日以降、アンマネージド ディスクを使用している仮想マシンは利用できなくなりますので、この期日までにアンマネージド ディスクを使用している仮想マシンをマネージド ディスクへ移行する必要があります。</p>
+<div class="alert is-info"><p class="alert-title">Note</p><p>Azure 更新情報 URL 内に記載の “Page blobs will not be affected by this change.” の箇所につきまして補足いたします。</p><p>アンマネージド ディスクは Azure Storage 内にページ BLOB として格納した VHD ファイルであり、これを仮想マシンにて利用しております。</p><p>今回、アンマネージド ディスクは 2025 年 9 月 30 日をもって廃止となり、アンマネージド ディスクを使用している仮想マシンは利用できなくなりますが、Azure Storage 内に格納されている VHD ファイル (ページ BLOB) 自体が削除されることはございません。この点はご安心くださいませ。</p></div>
 <p>お客様のご利用の環境において、アンマネージド ディスクを使用した仮想マシンが存在するのかどうかを確認し、存在する場合は計画的にマネージド ディスクへの移行を行いましょう。</p>
+<hr>
 <h2 id="1-アンマネージド-ディスクを使用している仮想マシンが存在するかの確認"><a href="#1-アンマネージド-ディスクを使用している仮想マシンが存在するかの確認" class="headerlink" title="1. アンマネージド ディスクを使用している仮想マシンが存在するかの確認"></a>1. アンマネージド ディスクを使用している仮想マシンが存在するかの確認</h2><p>アンマネージド ディスクを使用している仮想マシンが存在するかどうかは Azure Portal や Azure CLI でご確認いただくことができます。</p>
-<p>▼Azure Portal を使用する場合 </p>
-<p>[Azure Portal] &gt; [仮想マシン (Virtual Machines)] ＞ [ビューの管理] &gt; [列の編集] をクリックします。</p>
+<h3 id="▼-Azure-Portal-を使用する場合"><a href="#▼-Azure-Portal-を使用する場合" class="headerlink" title="▼ Azure Portal を使用する場合"></a>▼ Azure Portal を使用する場合</h3><p>[Azure Portal] &gt; [仮想マシン (Virtual Machines)] ＞ [ビューの管理] &gt; [列の編集] をクリックします。</p>
 <p><img src="/blog/vm/unmanaged-disk-retired/01.png"></p>
 <p>[+ 列の追加] をクリックします。</p>
 <p><img src="/blog/vm/unmanaged-disk-retired/02.png"></p>
@@ -132,23 +133,30 @@
 <p>[マネージド ディスクを使用する] の項目が追加されます。</p>
 <p><img src="/blog/vm/unmanaged-disk-retired/04.png"></p>
 <p>マネージド ディスクを使用している場合は「はい」、アンマネージド ディスクを使用している場合は「いいえ」と表示されます。<br>この項目が「いいえ」の場合、アンマネージド ディスクを使用した仮想マシンとなりますので、マネージド ディスクへの移行が必要であるとご判断いただくことが可能です。</p>
-<p>▼Azure CLI を使用する場合<br>コマンド例</p>
+<h3 id="▼-Azure-CLI-を使用する場合"><a href="#▼-Azure-CLI-を使用する場合" class="headerlink" title="▼ Azure CLI を使用する場合"></a>▼ Azure CLI を使用する場合</h3><p>コマンド例：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vmids=$(az vm list --query [].id -o tsv)</span><br><span class="line">$ az vm show --ids <span class="variable">$vmids</span> --query <span class="string">&quot;[].&#123;vmname:name, rgname:resourceGroup, unmanageddisk:storageProfile.osDisk.vhd.uri&#125;&quot;</span> -o table</span><br><span class="line">Vmname    Rgname    Unmanageddisk</span><br><span class="line">--------  --------  ----------------------------------------------------</span><br><span class="line">testvm01  testrg01</span><br><span class="line">testvm02  testrg02  https://sample.blob.core.windows.net/vhds/sample.vhd</span><br></pre></td></tr></table></figure>
+
 <p>[Unmanageddisk] 項目に VHD ファイルの URL が表示されている仮想マシンは、マネージド ディスクを使用した仮想マシンとなります。</p>
+<hr>
 <h2 id="2-マネージド-ディスクへの移行方法"><a href="#2-マネージド-ディスクへの移行方法" class="headerlink" title="2. マネージド ディスクへの移行方法"></a>2. マネージド ディスクへの移行方法</h2><p>マネージド ディスクへの移行方法や注意事項については以下公開情報にておまとめしておりますのでご参考ください。</p>
+<blockquote>
 <p>参考）</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/windows/convert-unmanaged-to-managed-disks">Windows 仮想マシンをアンマネージド ディスクからマネージド ディスクに移行する</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/virtual-machines/linux/convert-unmanaged-to-managed-disks">Linux 仮想マシンをアンマネージド ディスクからマネージド ディスクに移行する</a></li>
 </ul>
+</blockquote>
+<hr>
 <h2 id="3-マネージド-ディスクを利用することの利点や価格"><a href="#3-マネージド-ディスクを利用することの利点や価格" class="headerlink" title="3. マネージド ディスクを利用することの利点や価格"></a>3. マネージド ディスクを利用することの利点や価格</h2><p>マネージド ディスクをご利用いただくことによって得られる利点や価格に関しましては以下におまとめしておりますので、必要に応じてこちらもご参照ください。</p>
+<blockquote>
 <p>参考）</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/virtual-machines/managed-disks-overview#benefits-of-managed-disks">マネージド ディスクの利点</a></li>
 <li><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/managed-disks/">Managed Disks の価格</a></li>
 <li><a target="_blank" rel="noopener" href="https://azure.microsoft.com/ja-jp/pricing/details/storage/page-blobs/">Unmanaged Disk Azure ページ BLOB の価格</a></li>
 </ul>
-<p>マネージド ディスクは、ディスク リソースとしてプロビジョニングされたディスク サイズに対して課金が発生いたしますが、アンマネージド ディスクは、ページ BLOB として課金が発生いたします。</p>
+</blockquote>
+<p>なお、マネージド ディスクは、ディスク リソースとしてプロビジョニングされたディスク サイズに対して課金が発生いたしますが、アンマネージド ディスクは、ページ BLOB として課金が発生いたします。移行に伴い課金額に差異が発生する可能性がある旨、予めご認識いただけますと幸いです。</p>
 <p>本稿が皆様のお役に立てれば幸いです。</p>
 
       
