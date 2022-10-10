@@ -17,8 +17,17 @@
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/02.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/03.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/04.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/05.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/06.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/07.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/08.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/09.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/10.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/11.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/12.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/13.png">
 <meta property="article:published_time" content="2022-10-11T03:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-10T09:15:03.471Z">
+<meta property="article:modified_time" content="2022-10-10T09:32:13.056Z">
 <meta property="article:author" content="Japan Azure IaaS Core Support Team">
 <meta property="article:tag" content="Managed Disk">
 <meta property="article:tag" content="VM">
@@ -108,7 +117,7 @@
         
         <a href="https://github.com/jpaztech/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+0cd47800-67be-5d6f-a069-0cf41acb59f2%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E3%82%A2%E3%83%B3%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E4%BB%AE%E6%83%B3%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%AE%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%89+%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpaztech.github.io%2Fblog%2Fvm%2Funmanaged-disk-retired%2F%29%0A*+Content+Source%3A+%5Barticles%2Fvm%2Funmanaged-disk-retired.md%5D%28https%3A%2F%2Fgithub.com%2Fjpaztech%2Fblog%2Fblob%2Fmaster%2Farticles%2Fvm%2Funmanaged-disk-retired.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/" data-id="cl92k6d0b004p0mn3dhe1euke" class="article-share-link">共有</a>
+        <a data-url="https://jpaztech.github.io/blog/vm/unmanaged-disk-retired/" data-id="cl92ksfrp004p0mmng2z32x20" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -138,7 +147,28 @@
 
 <p>[Unmanageddisk] 項目に VHD ファイルの URL が表示されている仮想マシンは、マネージド ディスクを使用した仮想マシンとなります。</p>
 <hr>
-<h2 id="2-マネージド-ディスクへの移行方法"><a href="#2-マネージド-ディスクへの移行方法" class="headerlink" title="2. マネージド ディスクへの移行方法"></a>2. マネージド ディスクへの移行方法</h2><p>マネージド ディスクへの移行方法や注意事項については以下公開情報にておまとめしておりますのでご参考ください。</p>
+<h2 id="2-マネージド-ディスクへの移行方法"><a href="#2-マネージド-ディスクへの移行方法" class="headerlink" title="2. マネージド ディスクへの移行方法"></a>2. マネージド ディスクへの移行方法</h2><p>アンマネージド ディスクからマネージド ディスクへの移行はデータのコピーではなく、管理層を移行するという挙動となりますため、ディスクに格納されているデータ量に関わらず数分程度で完了することが想定となります。<br>ただし、移行操作に伴い VM の停止処理が発生しますので、この点は予めご留意いただきますようお願いいたします。</p>
+<p>アンマネージド ディスクを使用した仮想マシンをマネージド ディスクへ移行する手順としては以下となります。</p>
+<p>1.Azure Portal より対象の VM を選択します。</p>
+<p>2.対象 VM の  OS・データ ディスクの VHD ファイルが格納されている Azure Storage アカウントを確認します。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/05.png"></p>
+<p>OS・データ ディスクの各 [VHD の URI] 箇所より Azure Storage アカウント名を確認することができます。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/06.png"></p>
+<p><img src="/blog/vm/unmanaged-disk-retired/07.png"></p>
+<p>3.[ディスク] ブレードの上部 [マネージド ディスクに移行] 項目をクリックします。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/08.png"></p>
+<p>4.マネージド ディスクへの移行画面に遷移しますので、[移行] をクリックします。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/09.png"></p>
+<ol start="5">
+<li>VM が停止し、移行が開始されます。(約 2-3 分程度で完了します)</li>
+</ol>
+<p><img src="/blog/vm/unmanaged-disk-retired/10.png"></p>
+<p>6.マネージド ディスクに変換されたことを確認します。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/11.png"></p>
+<p>7.1 で確認した対象の Azure Storage アカウントのコンテナー内から VHD ファイル自体は削除されていないことを確認します。</p>
+<p><img src="/blog/vm/unmanaged-disk-retired/12.png"></p>
+<p><img src="/blog/vm/unmanaged-disk-retired/13.png"></p>
+<p>マネージド ディスクへの移行方法の詳細や注意事項については以下公開情報にておまとめしておりますのでご参考ください。<br>なお、マネージド ディスクへの移行は必ずテスト環境等で検証を行っていただいた上でご実施いただきますようお願いいたします。</p>
 <blockquote>
 <p>参考）</p>
 <ul>
