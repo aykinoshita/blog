@@ -16,10 +16,10 @@
 <meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring09.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring10.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring11.png">
-<meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring04.png">
+<meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring12.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/azureFilesMonitoring05.png">
 <meta property="article:published_time" content="2021-12-22T01:00:00.000Z">
-<meta property="article:modified_time" content="2023-12-12T06:36:14.489Z">
+<meta property="article:modified_time" content="2023-12-12T06:40:20.411Z">
 <meta property="article:author" content="Japan Azure IaaS Core Support Team">
 <meta property="article:tag" content="Storage">
 <meta name="twitter:card" content="summary">
@@ -108,7 +108,7 @@
         
         <a href="https://github.com/jpaztech/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+69b9fdf4-db7b-5605-b340-614b61a8deb3%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BAzure+File+%E3%81%AE%E8%A8%BA%E6%96%AD%E8%A8%AD%E5%AE%9A%E3%82%92%E8%A9%A6%E3%81%99%5D%28https%3A%2F%2Fjpaztech.github.io%2Fblog%2Fstorage%2FazureFilesMonitoring%2F%29%0A*+Content+Source%3A+%5Barticles%2Fstorage%2FazureFilesMonitoring.md%5D%28https%3A%2F%2Fgithub.com%2Fjpaztech%2Fblog%2Fblob%2Fmaster%2Farticles%2Fstorage%2FazureFilesMonitoring.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/" data-id="clq1yyqx500if0no99rquewfy" class="article-share-link">共有</a>
+        <a data-url="https://jpaztech.github.io/blog/storage/azureFilesMonitoring/" data-id="clq1z40ey00if0nmk4pc72xd4" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -130,7 +130,7 @@
 <li>ログ：取得するログ操作のカテゴリ (StorageRead(読み取り)、StorageWrite(書き込み)、削除(StorageDelete))</li>
 <li>宛先の詳細：ログの送信先 ※ここではログの送信先としてストレージ アカウントを選択しています。</li>
 </ul>
-<p><img src="/blog/storage/azureFilesMonitoring/azureFilesMonitoring04.png"></p>
+<p><img src="/blog/storage/azureFilesMonitoring/azureFilesMonitoring12.png"></p>
 <p>これで Azure Files の診断設定が完了です。</p>
 <h2 id="2-診断ログ内容を確認"><a href="#2-診断ログ内容を確認" class="headerlink" title="2. 診断ログ内容を確認"></a>2. 診断ログ内容を確認</h2><p>1 の手順にて診断ログの送信先をストレージ アカウントへ設定した場合、以下の画像のように送信先ストレージ アカウント内の各コンテナーにログが格納されることとなります。<br><img src="/blog/storage/azureFilesMonitoring/azureFilesMonitoring05.png"></p>
 <p>※ログは定期的に収集されますので、タイムラグが発生する可能性がございます。</p>
@@ -211,7 +211,6 @@
 <p>&lt;参考&gt;</p>
 <ul>
 <li>Azure Files とは<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/storage/files/storage-files-introduction">https://docs.microsoft.com/ja-jp/azure/storage/files/storage-files-introduction</a></li>
-<li>ソリューション 4 - REST API ベースのツール (Storage Explorer や Powershell など) を使用する<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/storage/files/storage-troubleshoot-windows-file-connection-problems#solution-4---use-rest-api-based-tools-like-storage-explorerpowershell">https://docs.microsoft.com/ja-jp/azure/storage/files/storage-troubleshoot-windows-file-connection-problems#solution-4---use-rest-api-based-tools-like-storage-explorerpowershell</a></li>
 <li>SMB アクセスの Azure Files ID ベース認証オプションの概要<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/storage/files/storage-files-active-directory-overview">https://docs.microsoft.com/ja-jp/azure/storage/files/storage-files-active-directory-overview</a></li>
 <li>ストレージ アカウント アクセス キーを管理する<br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/azure/storage/common/storage-account-keys-manage?tabs=azure-portal">https://docs.microsoft.com/ja-jp/azure/storage/common/storage-account-keys-manage?tabs=azure-portal</a></li>
 </ul>
