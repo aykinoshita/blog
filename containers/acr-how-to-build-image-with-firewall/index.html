@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://jpaztech.github.io/blog/containers/acr-how-to-build-image-with-firewall/vm_information.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/containers/acr-how-to-build-image-with-firewall/acr_information.png">
 <meta property="article:published_time" content="2023-12-22T03:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-03T06:23:12.567Z">
+<meta property="article:modified_time" content="2024-01-11T04:25:42.677Z">
 <meta property="article:author" content="Japan Azure IaaS Core Support Team">
 <meta property="article:tag" content="Containers">
 <meta property="article:tag" content="Azure Container Registry (ACR)">
@@ -106,7 +106,7 @@
         
         <a href="https://github.com/jpaztech/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+10f48573-d071-5f20-8373-e98615022b28%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5BACR+%E3%81%AE+Firewall+%E6%A9%9F%E8%83%BD%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%97%E3%81%9F%E7%8A%B6%E6%85%8B%E3%81%A7+ACR+%E3%81%AE%E6%A9%9F%E8%83%BD%E3%82%92%E7%94%A8%E3%81%84%E3%81%A6%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%83%BC+%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92%E3%83%93%E3%83%AB%E3%83%89%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpaztech.github.io%2Fblog%2Fcontainers%2Facr-how-to-build-image-with-firewall%2F%29%0A*+Content+Source%3A+%5Barticles%2Fcontainers%2Facr-how-to-build-image-with-firewall.md%5D%28https%3A%2F%2Fgithub.com%2Fjpaztech%2Fblog%2Fblob%2Fmaster%2Farticles%2Fcontainers%2Facr-how-to-build-image-with-firewall.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpaztech.github.io/blog/containers/acr-how-to-build-image-with-firewall/" data-id="clqxe6qda00my0nnpg6iifbvf" class="article-share-link">共有</a>
+        <a data-url="https://jpaztech.github.io/blog/containers/acr-how-to-build-image-with-firewall/" data-id="clr8pigo400mu0npn6kaw95v4" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -160,7 +160,7 @@
 <p>なお、おおまかな手順につきましては、下記ドキュメントにて記載されています。<br>こちらを参考に実施してみます。<br>　ご参考情報：例:ACR タスク<br>　<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/container-registry/allow-access-trusted-services#example-acr-tasks">https://learn.microsoft.com/ja-jp/azure/container-registry/allow-access-trusted-services#example-acr-tasks</a></p>
 <p>ACR タスクを作成する前に事前準備が必要となります。</p>
 <p>ACR ビルドでは、コンテナー イメージの作成に使用していた Dockerfile を az acr build コマンドを実行したクライアント端末に存在していましたが、ACR タスクでは ACR のエージェントにてアクセスが可能な場所に配置する必要があります。<br>ここでは、Dockerfile を ACR 上に配置し、ACR 上に配置した Dockerfile を ACR タスクより使用してコンテナー イメージを作成してみます。</p>
-<p>ACR に Dockerfile を配置するにあたり、オープン ソースにて開発がされている ORAS を使用します。<br>簡単な使用方法につきましては、下記ドキュメントでも紹介されておりますので、ご参考ください。<br>　ご参考情報：Azure コンテナー レジストリを使って OCI 成果物をプッシュおよびプルする<br>　<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/container-registry/container-registry-oci-artifact">https://learn.microsoft.com/ja-jp/azure/container-registry/container-registry-oci-artifact</a></p>
+<p>ACR に Dockerfile を配置するにあたり、オープン ソースにて開発がされている ORAS を使用します。<br>簡単な使用方法につきましては、下記ドキュメントでも紹介されておりますので、ご参考ください。<br>　ご参考情報：Azure コンテナー レジストリを使って OCI 成果物をプッシュおよびプルする<br>　<a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/container-registry/container-registry-oci-artifacts">https://learn.microsoft.com/ja-jp/azure/container-registry/container-registry-oci-artifacts</a></p>
 <p>それでは、ORAS を使って Dockerfile を ACR にプッシュします。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> oras push blogbuildtest.azurecr.io/hello-world.dockerfile:1.0 Dockerfile</span></span><br></pre></td></tr></table></figure>
 <p>今回は hello-world.dockerfile というリポジトリとしてプッシュしました。<br>では、この hello-world.dockerfile を用いるよう ACR タスクを作成してみます。<br>コマンドは下記のような形式となります。</p>
@@ -169,7 +169,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> az acr task create -t helloworld --registry blogbuildtest --name helloworldtask  --context oci://blogbuildtest.azurecr.io/hello-world.dockerfile:1.0  --file hello-world.dockerfile --assign-identity [system]</span></span><br></pre></td></tr></table></figure>
 <p>なお、「信頼されたサービス」を利用してアクセスを行う場合には、ACR タスクにマネージド ID を利用する必要があります。</p>
 <p>先ほど実行したコマンドにて、今回作成した ACR タスクにはシステム割り当てマネージド ID を利用するよう設定しているため、このシステム割り当てマネージド ID に必要な権限 (ACRPUSH) を割り当てます。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> principalID=$(az acr task show --name helloworldtask --registry tasktest --query identity.principalId --output tsv -g blog</span> </span><br><span class="line"><span class="meta">$</span><span class="bash"> baseregID=$(az acr show --name blogbuildtest --query id --output tsv -g blog )</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> az role assignment create --assignee <span class="variable">$principalID</span> --scope <span class="variable">$baseregID</span> --role acrpush</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> principalID=$(az acr task show --name helloworldtask --registry tasktest --query identity.principalId --output tsv -g blog)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> baseregID=$(az acr show --name blogbuildtest --query id --output tsv -g blog)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> az role assignment create --assignee <span class="variable">$principalID</span> --scope <span class="variable">$baseregID</span> --role acrpush</span></span><br></pre></td></tr></table></figure>
 <p>次に、ACR タスク “helloworldtask” に対して  ACR “blogbuildtest” へのアクセスにマネージド ID を利用するよう設定を行います。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> az acr task credential add --name helloworldtask --registry blogbuildtest --login-server blogbuildtest.azurecr.io --use-identity [system] -g blog</span></span><br></pre></td></tr></table></figure>
 <p>これで準備は完了です。それでは、ACR タスクを実行します。</p>
