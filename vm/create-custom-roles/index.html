@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/create-custom-roles/20.png">
 <meta property="og:image" content="https://jpaztech.github.io/blog/vm/create-custom-roles/21.png">
 <meta property="article:published_time" content="2024-01-16T01:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-28T01:27:12.121Z">
+<meta property="article:modified_time" content="2026-01-28T03:00:00.000Z">
 <meta property="article:author" content="Japan Azure IaaS Core Support Team">
 <meta property="article:tag" content="VM">
 <meta property="article:tag" content="RBAC">
@@ -125,7 +125,7 @@
         
         <a href="https://github.com/jpaztech/blog/issues/new?title=&body=%0A%0A---%0A%0A%23%23%23%23+Document+Details%0A%0A%E2%9A%A0+*Do+not+edit+this+section.%0A%0A*+ID%3A+7eadca28-87ff-5c3f-a396-0f0234e756cb%0A*+%E5%AF%BE%E8%B1%A1%E8%A8%98%E4%BA%8B%3A+%5B%E7%89%B9%E5%AE%9A%E3%81%AE%E6%93%8D%E4%BD%9C%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B+Azure+%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0+%E3%83%AD%E3%83%BC%E3%83%AB%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%5D%28https%3A%2F%2Fjpaztech.github.io%2Fblog%2Fvm%2Fcreate-custom-roles%2F%29%0A*+Content+Source%3A+%5Barticles%2Fvm%2Fcreate-custom-roles.md%5D%28https%3A%2F%2Fgithub.com%2Fjpaztech%2Fblog%2Fblob%2Fmaster%2Farticles%2Fvm%2Fcreate-custom-roles.md%29%0A*+Author%3A+" class="article-github-issue-link" target="_blank" rel="noopener noreferrer">feedback</a>
         
-        <a data-url="https://jpaztech.github.io/blog/vm/create-custom-roles/" data-id="cmkxci18r009p0nnx7m8i6mjh" class="article-share-link">共有</a>
+        <a data-url="https://jpaztech.github.io/blog/vm/create-custom-roles/" data-id="cmkxcwp9k009p0nlfdfoe5g0e" class="article-share-link">共有</a>
       </div>
     
     <div class="article-entry" itemprop="articleBody">
@@ -140,13 +140,13 @@
 <h2 id="1-Azure-カスタム-ロールについて"><a href="#1-Azure-カスタム-ロールについて" class="headerlink" title="1.Azure カスタム ロールについて"></a>1.Azure カスタム ロールについて</h2><p>Azure では、ロール ベース アクセス制御 (RBAC) という機能を使用し、アクセスできるリソースを制限したり、リソースへの操作を制限したりすることが可能です。<br>Azure には既定で各リソース操作（アクション）の許可をまとめた組み込みロールのご用意がありますが、Azure 組み込みロールがお客様のご要件を満たさない場合は、独自の Azure カスタム ロールを作成することができます。 </p>
 <p>参考）Azure 組み込みロール<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/built-in-roles</a> </p>
 <blockquote>
-<p>(抜粋)<br>Azure ロールベースのアクセス制御 (Azure RBAC) には、ユーザー、グループ、サービス プリンシパル、マネージド ID に割り当てることのできる Azure 組み込みロールがいくつかあります。 ロールの割り当ては、Azure リソースへのアクセスを制御する方法です。 組み込みロールが組織の特定のニーズを満たさない場合は、独自の Azure カスタム ロールを作成することができます。 ロールの割り当て方法については、「Azure ロールを割り当てる手順」を参照してください。 </p>
+<p>(抜粋)<br>Azure ロールベースのアクセス制御 (Azure RBAC) には、ユーザー、グループ、サービス プリンシパル、マネージド ID に割り当てることのできる Azure 組み込みロールがいくつか用意されています。 ロールの割り当ては、Azure リソースへのアクセスを制御する方法です。 組み込みロールが組織の特定のニーズを満たさない場合は、独自の Azure カスタム ロールを作成することができます。 ロールの割り当て方法については、「Azure ロールを割り当てる手順」を参照してください。 </p>
 </blockquote>
 <p>上記のドキュメントにて各組み込みロールで、実際にどのアクションが許可されているのかも確認が可能です。 </p>
 <p>ただし、リソースへの操作に対して最低限必要となるアクションの組み合わせについては、公開ドキュメントに明記されていないこともございますので、お客様のご要件に合わせてトライ アンド エラーしながら最終的に必要となるアクションを確認し、カスタム ロールを作成いただくこととなります。<br>また、Azure サポート窓口にて、カスタム ロールの作成の代行は叶いません点あらかじめご了承ください。</p>
 <h2 id="2-カスタム-ロールを作成する"><a href="#2-カスタム-ロールを作成する" class="headerlink" title="2.カスタム ロールを作成する"></a>2.カスタム ロールを作成する</h2><p>ここでは、Azure Portal から仮想マシンのディスクのスナップショットを取得するという操作を例に、当該操作を許可するためのアクションを確認し、カスタム ロールを作成していきます。<br>なお、他のどのような操作におきましても必要最小限のアクションのみが許可されたカスタム ロールを作成いただく場合、基本的には以下例のようにトライ アンド エラーを繰り返しながらカスタム ロールを作成いただくこととなります。</p>
-<h3 id="手順-1-「Azure-リソース-プロバイダーの操作」より使用可能なアクセスアクションを検索し、カスタム-ロールに含めるアクセスアクションを探します。"><a href="#手順-1-「Azure-リソース-プロバイダーの操作」より使用可能なアクセスアクションを検索し、カスタム-ロールに含めるアクセスアクションを探します。" class="headerlink" title="手順 1.「Azure リソース プロバイダーの操作」より使用可能なアクセスアクションを検索し、カスタム ロールに含めるアクセスアクションを探します。"></a>手順 1.「Azure リソース プロバイダーの操作」より使用可能なアクセスアクションを検索し、カスタム ロールに含めるアクセスアクションを探します。</h3><p>Microsoft.Compute のリソース プロバイダーに対する操作となるため、Microsoft.Compute の項目を確認します。 </p>
-<p>参考）Azure リソース プロバイダーの操作<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations</a> </p>
+<h3 id="手順-1-「Azure-のアクセス許可」より使用可能なアクセスアクションを検索し、カスタム-ロールに含めるアクセスアクションを探します。"><a href="#手順-1-「Azure-のアクセス許可」より使用可能なアクセスアクションを検索し、カスタム-ロールに含めるアクセスアクションを探します。" class="headerlink" title="手順 1.「Azure のアクセス許可」より使用可能なアクセスアクションを検索し、カスタム ロールに含めるアクセスアクションを探します。"></a>手順 1.「Azure のアクセス許可」より使用可能なアクセスアクションを検索し、カスタム ロールに含めるアクセスアクションを探します。</h3><p>Microsoft.Compute のリソース プロバイダーに対する操作となるため、Microsoft.Compute の項目を確認します。 </p>
+<p>参考）Azure のアクセス許可<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations</a> </p>
 <p><img src="/blog/vm/create-custom-roles/01.png"></p>
 <p>スナップショットの作成には ‘Microsoft.Compute/snapshots/write’ のアクションが必要となることを確認します。 </p>
 <p><img src="/blog/vm/create-custom-roles/02.png"></p>
@@ -176,7 +176,6 @@
 <p>{“code”:”AuthorizationFailed”,”message”:”オブジェクト ID が ‘XXX’ のクライアント ‘testuser01@XXX’ には、スコープ ‘/subscriptions/XXXXXX/resourceGroups/rg_test/providers/Microsoft.Resources/deployments/Snapshot.snapshot01-20240103123034’ でアクション ‘Microsoft.Resources/deployments/validate/action’ を実行する認可がないか、スコープが無効です。アクセスが最近許可された場合は、資格情報を更新してください。”} </p>
 </blockquote>
 <p>リソースのデプロイ検証に必要なアクションが不足していることが分かります。 </p>
-<p>参考）Microsoft.Resources<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftresources">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftresources</a></p>
 <table>
 <thead>
 <tr>
@@ -197,7 +196,6 @@
 <p>デプロイ要求を送信中にエラーが発生しました。<br>役立つ可能性がある基本 API から得られた追加の詳細情報: オブジェクト ID が ‘XXX’ のクライアント ‘testuser01@XXX’ には、スコープ ‘/subscriptions/XXXXX/resourceGroups/rg_test/providers/Microsoft.Resources/deployments/Snapshot.snapshot01-20240103124401’ でアクション ‘Microsoft.Resources/deployments/write’ を実行する認可がないか、スコープが無効です。アクセスが最近許可された場合は、資格情報を更新してください。 </p>
 </blockquote>
 <p>デプロイの作成に必要となるアクションが不足していることが分かります。 </p>
-<p>参考）Microsoft.Resources<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftresources">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftresources</a></p>
 <table>
 <thead>
 <tr>
@@ -217,7 +215,6 @@
 <blockquote>
 <p>The client ‘testuser01@XXX’ with object id ‘XXX’ has permission to perform action ‘Microsoft.Compute/snapshots/write’ on scope ‘/subscriptions/XXXXX/resourcegroups/rg_test/providers/Microsoft.Compute/snapshots/snapshot01’; however, it does not have permission to perform action(s) ‘Microsoft.Compute/disks/beginGetAccess/action’ on the linked scope(s) ‘/subscriptions/XXXXX/resourceGroups/rg_test/providers/Microsoft.Compute/disks/win2022_OsDisk_1_XXX (respectively) or the linked scope(s) are invalid。詳細については、ここをクリックしてください </p>
 </blockquote>
-<p>参考）Microsoft.Compute<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftcompute">https://learn.microsoft.com/ja-jp/azure/role-based-access-control/resource-provider-operations#microsoftcompute</a></p>
 <table>
 <thead>
 <tr>
